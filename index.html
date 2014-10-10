@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery Mobile Web App</title>
+<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
+<!-- This reference to cordova.js will allow for code hints as long as the current site has been configured as a mobile application. 
+	 To configure the site as a mobile application, go to Site -> Mobile Applications -> Configure Application Framework... -->
+<script src="/cordova.js" type="text/javascript"></script>
+</head> 
+<body> 
+
+<script type="text/javascript">
+  
+  
+  
+  function myFunction(){
+	  var accBalance=$("#accBalance").val();
+	  	if (isNaN(accBalance)){
+		  accBalance = Number(accBalance.replace(/[^0-9\.]+/g,""));
+		  var risk=new Number(accBalance*0.02);
+					$("#risk").val("$ " + risk.toFixed(2));
+		  
+	 		 } else{
+  				var accBalance = new Number($("#accBalance").val());
+		  			$("#accBalance").val("$ " + accBalance.toFixed(2));
+						var risk=new Number(accBalance*0.02);
+							$("#risk").val("$ " + risk.toFixed(2));
+					  				
+  }
+  }
+  
+  function eraseFunction() {
+         $("#buyAt").val('');
+    
+	};
+	
+	function buyAtFunction() {
+    var  buyAt =new Number($("#buyAt").val());
+	
+		  
+					$("#buyAt").val("$ " + buyAt.toFixed(2));
+		 
+	
+	};
+	
+	
+	function eraseStopFunction() {
+         $("#stopAt").val('');
+		 $("#toBuy").val('');
+    
+	};
+	
+	
+	function stopAtFunction() {
+    var  stopAt =new Number($("#stopAt").val());
+		  
+					$("#stopAt").val("$ " + stopAt.toFixed(2));
+					
+					risk=$("#risk").val();
+					risk = Number(risk.replace(/[^0-9\.]+/g,""));
+					
+					buyAt=$("#buyAt").val();
+					buyAt = Number(buyAt.replace(/[^0-9\.]+/g,""));
+					stopAt=$("#stopAt").val();
+					stopAt = Number(stopAt.replace(/[^0-9\.]+/g,""));
+					var toBuy = Math.round(risk/(buyAt-stopAt));
+					$("#toBuy").val(toBuy);
+		
+	};
+	
+   function eraseSell() {
+         $("#sellAt").val('');
+		 $("#result").val('');
+    
+	};
+	function result(){
+					buyAt=$("#buyAt").val();
+					buyAt = Number(buyAt.replace(/[^0-9\.]+/g,""));
+					sellAt=$("#sellAt").val();
+					sellAt = Number(sellAt.replace(/[^0-9\.]+/g,""));
+					toBuy=$("#toBuy").val();
+					result = (sellAt - buyAt) * toBuy;
+					
+					$("#sellAt").val("$ " + sellAt.toFixed(2));
+					$("#result").val("$ " + result.toFixed(2));
+					result=$("#result").val();
+					sellAt =Number($("#buyAt").val());
+		
+		
+		
+	}
+	
+  </script>
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Page One</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page2">Page Two</a></li>
+            <li><a href="#page3">Page Three</a></li>
+			<li><a href="#page4">Page Four</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header">
+		<h1>Page Two</h1>
+	</div>
+	<div data-role="content">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">Balance</div>
+       <div class="ui-block-b"><input type="number"    onChange="myFunction()" name="accBalance"id="accBalance" pattern="[0-9.]"/></div>
+        <div class="ui-block-a">Risk</div>
+        <div class="ui-block-b"><input type="number"  id="risk" disabled="disabled"/></div>
+        <div class="ui-block-a">Buy @</div>
+        <div class="ui-block-b"><input type="number"  pattern="[0-9.]" onFocus="eraseFunction()"  onChange="buyAtFunction()"id="buyAt" /></div>
+        <div class="ui-block-a">Stop @</div>
+        <div class="ui-block-b"><input type="number" onChange="stopAtFunction()" onFocus="eraseStopFunction()" id="stopAt" pattern="[0-9.]"/></div>
+        <div class="ui-block-a">N to buy</div>
+        <div class="ui-block-b"><input type="number"  id="toBuy" /></div>
+        <div class="ui-block-a">Sell @</div>
+        <div class="ui-block-b"><input type="number"  id="sellAt" onFocus="eraseSell()" onChange="result()"/></div>
+        <div class="ui-block-a">Result</div>
+        <div class="ui-block-b"><input type="number"  pattern="[0-9.]" id="result" /></div>
+     
+	
+</div>
+<!--<input type="number" onBlur="myFunction()" id="accBalance" />-->
+<div data-role="page" id="page3">
+	<div data-role="header">
+		<h1>Page Three</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header">
+		<h1>Page Four</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+</body>
+</html>
