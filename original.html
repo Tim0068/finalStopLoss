@@ -1,12 +1,13 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Untitled Document</title>
-<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css">
+<title>jQuery Mobile Web App</title>
+<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
 <script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
 <script src="jquery-mobile/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
 
+<script src="/cordova.js" type="text/javascript"></script>
 <script type="text/javascript" src="format.20110630-1100.min.js"></script>
 </head> 
 <body> 
@@ -35,17 +36,33 @@
   
 	
   </script>
-<div data-role="page" id="newPage" data-theme="b">
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Page One</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page2">Page Two</a></li>
+            <li><a href="#page3">Page Three</a></li>
+			<li><a href="#page4">Page Four</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
 	<div data-role="header">
 		<h1>Stop Loss</h1>
        
 	</div>
 	<div data-role="content">
-<div class="ui-grid-a">
+      <div class="ui-grid-a">
         <div class="ui-block-a">Balance</div>
-       <div class="ui-block-b"><input type="tel"  onChange="myFunction()" id="accBalance"/></div>
+       <div class="ui-block-b"><input type="tel"   onBlur="currencyFormat(accBalance)"  onChange="myFunction()" id="accBalance" pattern="[0-9.]"/></div>
         <div class="ui-block-a">Risk</div>
-        <div class="ui-block-b"><input type="tel"  id="risk" disabled="disabled"/></div>
+        <div class="ui-block-b"><input type="te1"  id="risk" disabled="disabled"/></div>
         <div class="ui-block-a">Buy @</div>
         <div class="ui-block-b"><input type="tel"  pattern="[0-9.]" onFocus="eraseFunction()"  onChange="buyAtFunction()"id="buyAt" /></div>
         <div class="ui-block-a">Stop @</div>
@@ -55,9 +72,34 @@
         <div class="ui-block-a">Sell @</div>
         <div class="ui-block-b"><input type="tel"  id="sellAt" onFocus="eraseSell()" onChange="result()"/></div>
         <div class="ui-block-a">Result</div>
-  <div class="ui-block-b"><input type="tel"  pattern="[0-9.]" id="result" /></div>
+        <div class="ui-block-b"><input type="tel"  pattern="[0-9.]" id="result" /></div>
       
-	
+	<p  id="demo">here</p>
+</div>
+
+<!--<input type="number" onBlur="myFunction()" id="accBalance" />-->
+<div data-role="page" id="page3">
+	<div data-role="header">
+		<h1>Page Three</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header">
+		<h1>Page Four</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
 </div>
 
 </body>
