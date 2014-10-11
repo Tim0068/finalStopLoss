@@ -13,85 +13,21 @@
 <body> 
 
 <script type="text/javascript">
-  
+
+	var accBalance
+  var risk
   
   
   function myFunction(){
-	  var accBalance=$("#accBalance").val();
-	  	if (isNaN(accBalance)){
-		  accBalance = Number(accBalance.replace(/[^0-9\.]+/g,""));
-		  var risk=new Number(accBalance*0.02);
-					$("#risk").val("$ " + risk.toFixed(2));
-		  
-	 		 } else{
-  				var accBalance = new Number($("#accBalance").val());
-		  			$("#accBalance").val("$ " + accBalance.toFixed(2));
-						var risk=new Number(accBalance*0.02);
-							$("#risk").val("$ " + risk.toFixed(2));
+	 accBalance = document.getElementById("accBalance").value;
+	risk = accBalance*0.02;
+	 document.getElementById("risk").value=risk;
+	 alert(risk); 	
 					  				
   }
-  }
+
   
-  function eraseFunction() {
-         $("#buyAt").val('');
-    
-	};
-	
-	function buyAtFunction() {
-    var  buyAt =new Number($("#buyAt").val());
-	
-		  
-					$("#buyAt").val("$ " + buyAt.toFixed(2));
-		 
-	
-	};
-	
-	
-	function eraseStopFunction() {
-         $("#stopAt").val('');
-		 $("#toBuy").val('');
-    
-	};
-	
-	
-	function stopAtFunction() {
-    var  stopAt =new Number($("#stopAt").val());
-		  
-					$("#stopAt").val("$ " + stopAt.toFixed(2));
-					
-					risk=$("#risk").val();
-					risk = Number(risk.replace(/[^0-9\.]+/g,""));
-					
-					buyAt=$("#buyAt").val();
-					buyAt = Number(buyAt.replace(/[^0-9\.]+/g,""));
-					stopAt=$("#stopAt").val();
-					stopAt = Number(stopAt.replace(/[^0-9\.]+/g,""));
-					var toBuy = Math.round(risk/(buyAt-stopAt));
-					$("#toBuy").val(toBuy);
-		
-	};
-	
-   function eraseSell() {
-         $("#sellAt").val('');
-		 $("#result").val('');
-    
-	};
-	function result(){
-					buyAt=$("#buyAt").val();
-					buyAt = Number(buyAt.replace(/[^0-9\.]+/g,""));
-					sellAt=$("#sellAt").val();
-					sellAt = Number(sellAt.replace(/[^0-9\.]+/g,""));
-					toBuy=$("#toBuy").val();
-					result = (sellAt - buyAt) * toBuy;
-					
-					$("#sellAt").val("$ " + sellAt.toFixed(2));
-					$("#result").val("$ " + result.toFixed(2));
-					result=$("#result").val();
-					sellAt =Number($("#buyAt").val());
-		
-		
-		
-	}
+  
 	
   </script>
 <div data-role="page" id="page">
@@ -113,11 +49,12 @@
 <div data-role="page" id="page2">
 	<div data-role="header">
 		<h1>Stop Loss</h1>
+       
 	</div>
 	<div data-role="content">
       <div class="ui-grid-a">
         <div class="ui-block-a">Balance</div>
-       <div class="ui-block-b"><input type="number"    onChange="myFunction()" name="accBalance"id="accBalance" pattern="[0-9.]"/></div>
+       <div class="ui-block-b"><input type="number"    onChange="myFunction()" id="accBalance" pattern="[0-9.]"/></div>
         <div class="ui-block-a">Risk</div>
         <div class="ui-block-b"><input type="number"  id="risk" disabled="disabled"/></div>
         <div class="ui-block-a">Buy @</div>
@@ -130,9 +67,10 @@
         <div class="ui-block-b"><input type="number"  id="sellAt" onFocus="eraseSell()" onChange="result()"/></div>
         <div class="ui-block-a">Result</div>
         <div class="ui-block-b"><input type="number"  pattern="[0-9.]" id="result" /></div>
-     
-	
+      
+	<p  id="demo">here</p>
 </div>
+
 <!--<input type="number" onBlur="myFunction()" id="accBalance" />-->
 <div data-role="page" id="page3">
 	<div data-role="header">
