@@ -6,59 +6,112 @@
 <link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css">
 <script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
 <script src="jquery-mobile/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
-
 <script type="text/javascript" src="format.20110630-1100.min.js"></script>
-</head> 
-<body> 
-
+</head>
+<body>
 <script type="text/javascript">
 
-	var accBalance
-  var risk
-  
-  
-  function myFunction(){
+var accBalance
+  	var risk
+ 	var buyAt
+  	var stopAt
+	var sellAt
+  	var toBuy
+  	var result
+function myFunction(){
+	
+  	
+	
+		//get accBalance var
 	 accBalance = document.getElementById("accBalance").value;
 	 	if(isNaN(accBalance)){
 			accBalance=accBalance.replace(/\D/g,"");
-		}
-	risk = accBalance*0.02;
-	 document.getElementById("risk").value=risk;
+			
+		};
+		document.getElementById("accBalance").value =format( "#,##0.####", accBalance);
+		
+		
+		//risk var
+		risk = accBalance*0.02;
+		document.getElementById("risk").value = risk;
+			document.getElementById("risk").value =format( "#,##0.####", risk);
+		
+		
+		//buyAt var
+		
+  	buyAt = document.getElementById("buyAt").value;
+	 	if(isNaN(buyAt)){
+		buyAt=buyAt.replace(/\D/g,"");
+			document.getElementById("buyAt").value =format( "#,##0.####", buyAt);
+	};
+			
+		//stopAt var
+		
+		stopAt = document.getElementById("stopAt").value;
+	 	if(isNaN(stopAt)){
+			stopAt=stopAt.replace(/\D/g,"");
+			document.getElementById("stopAt").value =format( "#,##0.####", stopAt);
+		};
+		
+		//N to buy var
+		toBuy=risk/(buyAt-stopAt);
+		
+		
+		 document.getElementById("toBuy").value=toBuy;
 	 	
-	  
-	 document.getElementById("accBalance").value =format( "#,##0.####", accBalance);
-	 document.getElementById("risk").value =format( "#,##0.####", risk); 	
-					  				
-  }
+			document.getElementById("toBuy").value =format( "#,##0.####", toBuy);
+		
+	//sellAt var
+	sellAt = document.getElementById("sellAt").value;
+	 	if(isNaN(sellAt)){
+			sellAt=sellAt.replace(/\D/g,"");
+			document.getElementById("sellAt").value =format( "#,##0.####", sellAt);
+		}
+		result=(sellAt-buyAt)*toBuy
+			//if(isNaN(result)){
+			//result=result.replace(/\D/g,"");
+			document.getElementById("result").value =format( "#,##0.####", result);
+			
+}
+//}
 
- 
   
-	
   </script>
 <div data-role="page" id="newPage" data-theme="b">
-	<div data-role="header">
-		<h1></h1>
-       
-	</div>
-	<div data-role="content">
-<div class="ui-grid-a">
-        <div class="ui-block-a">Balance</div>
-       <div class="ui-block-b"><input type="number" pattern="[0-9.]" onChange="myFunction()" id="accBalance"/></div>
-        <div class="ui-block-a">Risk</div>
-        <div class="ui-block-b"><input type="tel"  id="risk" disabled="disabled"/></div>
-        <div class="ui-block-a">Buy @</div>
-        <div class="ui-block-b"><input type="tel"  pattern="[0-9.]" onFocus="eraseFunction()"  onChange="buyAtFunction()"id="buyAt" /></div>
-        <div class="ui-block-a">Stop @</div>
-        <div class="ui-block-b"><input type="tel" onChange="stopAtFunction()" onFocus="eraseStopFunction()" id="stopAt" pattern="[0-9.]"/></div>
-        <div class="ui-block-a">N to buy</div>
-        <div class="ui-block-b"><input type="tel"  id="toBuy" /></div>
-        <div class="ui-block-a">Sell @</div>
-        <div class="ui-block-b"><input type="tel"  id="sellAt" onFocus="eraseSell()" onChange="result()"/></div>
-        <div class="ui-block-a">Result</div>
-  <div class="ui-block-b"><input type="tel"  pattern="[0-9.]" id="result" /></div>
-      
-	
+<div data-role="header">
+  <h1></h1>
 </div>
-
+<div data-role="content">
+<div class="ui-grid-a">
+  <div class="ui-block-a">Balance</div>
+  <div class="ui-block-b">
+    <input type="number" pattern="[0-9.]"  id="accBalance"/>
+  </div>
+  <div class="ui-block-a">Risk</div>
+  <div class="ui-block-b">
+    <input type="tel"  id="risk" disabled="disabled"/>
+  </div>
+  <div class="ui-block-a">Buy @</div>
+  <div class="ui-block-b">
+    <input type="tel"  pattern="[0-9.]" id="buyAt" />
+  </div>
+  <div class="ui-block-a">Stop @</div>
+  <div class="ui-block-b">
+    <input type="tel"  id="stopAt" pattern="[0-9.]"/>
+  </div>
+  <div class="ui-block-a">N to buy</div>
+  <div class="ui-block-b">
+    <input type="tel"  id="toBuy"  disabled="disabled"/>
+  </div>
+  <div class="ui-block-a">Sell @</div>
+  <div class="ui-block-b">
+    <input type="tel"  id="sellAt" />
+  </div>
+  <div class="ui-block-a">Result</div>
+  <div class="ui-block-b">
+    <input type="tel"  pattern="[0-9.]" id="result"/>
+  </div>
+  <div class="ui-block-a"><button onClick="myFunction()">Accept</button></div>
+</div>
 </body>
 </html>
