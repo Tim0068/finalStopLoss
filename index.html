@@ -71,21 +71,20 @@ function myFunction(){
 			//if(isNaN(result)){
 			//result=result.replace(/\D/g,"");
 			document.getElementById("result").value =format( "#,##0.####", result);
-			
+	accBalance = Number(accBalance) + Number(result);
+document.getElementById("accBalance").value=format( "#,##0.####", accBalance);		
 }
+
 //}
 
   
   </script>
 <div data-role="page" id="newPage" data-theme="b">
-<div data-role="header">
-  <h1></h1>
-</div>
 <div data-role="content">
 <div class="ui-grid-a">
   <div class="ui-block-a">Balance</div>
   <div class="ui-block-b">
-    <input type="number" pattern="[0-9.]"  id="accBalance"/>
+    <input type="tel" pattern="[0-9.]"  id="accBalance"/>
   </div>
   <div class="ui-block-a">Risk</div>
   <div class="ui-block-b">
